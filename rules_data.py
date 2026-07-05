@@ -80,6 +80,60 @@ RULES = {
             "note": "Local-jurisdiction limited license, not statewide.",
         },
     },
+    "North Carolina": {
+        "Limited Electrical Contractor": {
+            "cycle": "annual",
+            "cycle_months": 12,
+            "ce_hours_required": 8,
+            "ce_note": "8 hours/year, at least 50% must be live/instructor-led classroom (not online).",
+            "renewal_fee_usd": 100,
+            "authority": "NC State Board of Examiners of Electrical Contractors (NCBEEC)",
+            "source": "https://www.ncbeec.org/licensing/",
+            "note": "Rolling annual renewal — expiration date is unique to each license (NOT a fixed calendar date). $25 late fee if renewed after expiration.",
+        },
+        "Intermediate Electrical Contractor": {
+            "cycle": "annual",
+            "cycle_months": 12,
+            "ce_hours_required": 8,
+            "ce_note": "8 hours/year, at least 50% must be live/instructor-led classroom (not online).",
+            "renewal_fee_usd": 150,
+            "authority": "NC State Board of Examiners of Electrical Contractors (NCBEEC)",
+            "source": "https://www.ncbeec.org/licensing/",
+            "note": "Rolling annual renewal — expiration date is unique to each license. $25 late fee if renewed after expiration.",
+        },
+        "Unlimited Electrical Contractor": {
+            "cycle": "annual",
+            "cycle_months": 12,
+            "ce_hours_required": 8,
+            "ce_note": "8 hours/year, at least 50% must be live/instructor-led classroom (not online).",
+            "renewal_fee_usd": 200,
+            "authority": "NC State Board of Examiners of Electrical Contractors (NCBEEC)",
+            "source": "https://www.ncbeec.org/licensing/",
+            "note": "Rolling annual renewal — expiration date is unique to each license. NC does not issue a statewide journeyman license; electricians work under a licensed contractor's Unlimited/Intermediate/Limited license.",
+        },
+    },
+    "Tennessee": {
+        "Limited Licensed Electrician (LLE)": {
+            "cycle": "annual",
+            "cycle_months": 24,
+            "ce_hours_required": 0,
+            "ce_note": "Tennessee does NOT require continuing education for LLE license holders.",
+            "renewal_fee_usd": 50,
+            "authority": "TN Department of Commerce & Insurance / Board for Licensing Contractors",
+            "source": "https://www.tn.gov/commerce/regboards/lle/electrical-licensing.html",
+            "note": "For projects under $25,000 only. Biennial (every 2 years), expires on the last day of the month of issuance — rolling, not a fixed calendar date. Not accepted in Davidson (Nashville), Hamilton (Chattanooga), Knox (Knoxville), or Shelby (Memphis) counties, which have their own local licensing.",
+        },
+        "Electrical Contractor (CE classification)": {
+            "cycle": "annual",
+            "cycle_months": 24,
+            "ce_hours_required": 0,
+            "ce_note": "Tennessee does NOT require continuing education for CE-classified contractors.",
+            "renewal_fee_usd": 200,
+            "authority": "TN Board for Licensing Contractors",
+            "source": "https://www.mikeholt.com/statelicense.php?id=TN",
+            "note": "For projects $25,000 and up. Biennial, rolling — expires on the last day of the month of issuance.",
+        },
+    },
 }
 
-TRADE = "Electrician"  # MVP scope — single trade, 3 states
+TRADE = "Electrician"  # MVP scope
