@@ -1,32 +1,34 @@
 """
 Renewal date calculation engine.
-Handles both simple annual cycles (Texas) and fixed-date biennial cycles (Georgia, Florida).
+Handles two patterns:
+  1. Rolling (e.g. Texas=12mo, NC=12mo, Tennessee=24mo): next_date = last_renewal_date + cycle_months
+  2. Fixed biennial date (e.g. Georgia June 30, Florida Aug 31 even years):
+     next_date = the next occurrence of that fixed date on the correct even/odd year cycle
 """
 
 from datetime import date, timedelta
 import calendar
 
 
+def _add_months(d, months):
+    """Add a number of months to a date, handling year rollover and month-end edge cases."""
+    month = d.month - 1 + months
+    year = d.year + month // 12
+    month = month % 12 + 1
+    day = min(d.day, calendar.monthrange(year, month)[1])
+    return date(year, month, day)
+
+
 def calculate_next_renewal(state, license_type, last_renewal_date, rules):
     """
     Given a state, license type, and last renewal date, return the next renewal deadline.
-    Handles two patterns:
-      1. Rolling annual (e.g. Texas): next_date = last_renewal_date + 1 year
-      2. Fixed biennial date (e.g. Georgia June 30, Florida Aug 31 even years):
-         next_date = the next occurrence of that fixed date on the correct even/odd year cycle
     """
     rule = rules[state][license_type]
 
     if rule["cycle"] == "annual":
-        # Rolling: same month/day, next year
-        try:
-            next_date = last_renewal_date.replace(year=last_renewal_date.year + 1)
-        except ValueError:
-            # handles Feb 29 edge case
-            next_date = last_renewal_date.replace(
-                year=last_renewal_date.year + 1, day=28
-            )
-        return next_date
+        # Rolling: same day-of-month, cycle_months later (12 for TX/NC, 24 for TN)
+        months = rule.get("cycle_months", 12)
+        return _add_months(last_renewal_date, months)
 
     elif rule["cycle"] == "biennial":
         fixed_exp = rule.get("fixed_expiration", "")
